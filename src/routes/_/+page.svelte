@@ -1,13 +1,9 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import CameraCard from './CameraCard.svelte';
-	import { AuthStore, MakeNVRRequest } from '$lib/nvr';
+	import { AuthStore, MakeNVRRequest, type CameraData } from '$lib/nvr';
 
-    interface CameraData {
-        name: string,
-        logs: string[]
-    }
-
+    
 	let cameras: CameraData[] = [];
 
 	onMount(async () => {
