@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { AuthStore, MakeNVRRequest } from '$lib/nvr';
+	import { AuthStore, MakeNVRRequest, extractFirstFPSFromLogArray } from '$lib/nvr';
 	import { onDestroy, onMount } from 'svelte';
 	import { fade, scale } from 'svelte/transition';
 
-	let { cameraName }: { cameraName: string } = $props();
+	let { cameraName, logs }: { cameraName: string, logs: string[] } = $props();
 
 	let imageSrc = $state('');
 	let showModal = $state(false);
@@ -28,6 +28,8 @@
 				console.error(err);
 				imageSrc = '';
 			}
+
+            console.log(logs)
 		}, 1000);
 	});
 
@@ -95,7 +97,7 @@
 		<div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
 			{#if imageSrc}
 				{@render CheckIcon()}
-				<span>Online</span>
+				<span>Online - {extractFirstFPSFromLogArray(logs)} FPS (encoding)</span>
 			{:else}
 				{@render XIcon()}
 				<span>Offline</span>
