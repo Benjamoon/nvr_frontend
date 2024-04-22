@@ -76,3 +76,11 @@ export function extractFirstFPSFromLogArray(logs: string[]): number | null {
     // If no match is found in any log entry, return null
     return null;
 }
+
+
+interface CameraData {
+    name: string,
+    logs: string[]
+}
+
+export type { CameraData }
