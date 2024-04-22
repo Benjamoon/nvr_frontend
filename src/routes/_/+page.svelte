@@ -4,7 +4,8 @@
 	import { AuthStore, MakeNVRRequest } from '$lib/nvr';
 
     interface CameraData {
-        name: string
+        name: string,
+        logs: string[]
     }
 
 	let cameras: CameraData[] = [];
@@ -38,7 +39,7 @@
 			</div>
 			<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-6 lg:grid-cols-4">
                 {#each cameras as camera}
-				    <CameraCard cameraName={camera.name} />
+				    <CameraCard cameraName={camera.name} logs={camera.logs} />
                 {/each}
 			</div>
 		</div>

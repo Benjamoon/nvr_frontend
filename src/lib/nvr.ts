@@ -57,3 +57,22 @@ interface AuthData {
 }
 
 export const AuthStore = persisted<AuthData | false>("auth", false);
+
+
+
+export function extractFirstFPSFromLogArray(logs: string[]): number | null {
+    // Regular expression to find the fps pattern
+    const fpsPattern = /fps=\s*(\d+)/;
+
+    // Iterate over each log entry
+    for (let log of logs) {
+        const match = log.match(fpsPattern);
+        // If a match is found, return the first group (the fps number) converted to a number
+        if (match && match[1]) {
+            return parseInt(match[1], 10);
+        }
+    }
+
+    // If no match is found in any log entry, return null
+    return null;
+}
